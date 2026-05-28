@@ -1,9 +1,12 @@
 import type { NextConfig } from "next";
-/*Subindo no gh pages*/
+
+const isProd = process.env.NODE_ENV === "production";
+const basePath = isProd ? "/ARES_ROVERS_UNB_WEBSITE" : "";
+
 const nextConfig: NextConfig = {
   output: "export",
-  basePath: "/ARES_ROVERS_UNB_WEBSITE",
-  assetPrefix: "/ARES_ROVERS_UNB_WEBSITE/",
+  basePath,
+  assetPrefix: basePath || undefined,
   trailingSlash: true,
   images: {
     unoptimized: true,

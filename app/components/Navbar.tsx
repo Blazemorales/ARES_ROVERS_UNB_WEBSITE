@@ -5,17 +5,18 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const navLinks = [
-  { href: "/", label: "Início" },
-  { href: "/sobre", label: "Sobre" },
-  { href: "/projetos", label: "Projetos" },
-  { href: "/equipe", label: "Equipe" },
-  { href: "/patrocinadores", label: "Patrocinadores" },
-  { href: "/contato", label: "Contato" },
+  { href: "#hero", label: "Início" },
+  { href: "#sobre", label: "Sobre Nós" },
+  { href: "#projetos", label: "Projetos" },
+  { href: "#equipe", label: "Equipe" },
+  { href: "#patrocinadores", label: "Patrocinadores" },
+  { href: "#contato", label: "Contato" },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [active, setActive] = useState<string>("hero");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -31,49 +32,81 @@ export default function Navbar() {
     };
   }, [menuOpen]);
 
+  useEffect(() => {
+    const ids = navLinks.map((l) => l.href.replace("#", ""));
+    const sections = ids
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActive(visible.target.id);
+      },
+      { rootMargin: "-40% 0px -40% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] },
+    );
+
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
         scrolled || menuOpen
-          ? "bg-black/90 backdrop-blur-md"
-          : "bg-gradient-to-b from-black/60 to-black/70"
+          ? "bg-black/85 backdrop-blur-md"
+          : "bg-gradient-to-b from-black/70 to-transparent"
       }`}
     >
       <nav className="mx-auto grid h-16 max-w-7xl grid-cols-[1fr_auto_1fr] items-center px-6 lg:px-10">
         <Link
-          href="/"
+          href="#hero"
           className="flex items-center gap-2 justify-self-start"
           onClick={() => setMenuOpen(false)}
         >
           <Image
-            src="/Logo dourada_roxa_dark.png"
+            src="/Logo_dourada_roxa_dark.png"
             alt="Ares Rovers"
-            width={120}
-            height={28}
-            priority
-            className="h-7 w-auto inverted"
+            width={40}
+            height={40}
+            preload
+            className="h-9 w-9"
           />
         </Link>
 
-        <ul className="hidden items-center gap-8 justify-self-center md:flex">
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <Link
-                href={link.href}
-                className="text-sm font-medium tracking-wide text-white/90 transition-colors hover:text-white inverted"
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
+        <ul className="hidden items-center gap-7 justify-self-center md:flex">
+          {navLinks.map((link) => {
+            const id = link.href.replace("#", "");
+            const isActive = active === id;
+            return (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className={`relative text-sm font-medium tracking-wide transition-colors ${
+                    isActive
+                      ? "text-[#D4A017]"
+                      : "text-white/85 hover:text-white"
+                  }`}
+                >
+                  {link.label}
+                  <span
+                    className={`absolute -bottom-1 left-0 h-px w-full origin-left bg-[#D4A017] transition-transform duration-300 ${
+                      isActive ? "scale-x-100" : "scale-x-0"
+                    }`}
+                  />
+                </Link>
+              </li>
+            );
+          })}
         </ul>
 
         <div className="hidden items-center gap-3 justify-self-end md:flex">
           <Link
-            href="https://www.linkedin.com/company/aresunb/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-full border border-white/30 px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-white hover:text-black"
+            href="#contato"
+            className="rounded-full border border-[#D4A017]/60 bg-[#D4A017]/10 px-5 py-2 text-sm font-semibold text-[#D4A017] transition-colors hover:bg-[#D4A017] hover:text-black"
           >
             Apoie-nos
           </Link>
@@ -112,24 +145,28 @@ export default function Navbar() {
         }`}
       >
         <ul className="flex flex-col gap-1 px-6 pb-8 pt-2">
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <Link
-                href={link.href}
-                onClick={() => setMenuOpen(false)}
-                className="block border-b border-white/10 py-4 text-base text-white/90 hover:text-white"
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
+          {navLinks.map((link) => {
+            const id = link.href.replace("#", "");
+            const isActive = active === id;
+            return (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  className={`block border-b border-white/10 py-4 text-base ${
+                    isActive ? "text-[#D4A017]" : "text-white/90 hover:text-white"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            );
+          })}
           <li className="pt-6">
             <Link
-              href="https://www.linkedin.com/company/aresunb/"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#contato"
               onClick={() => setMenuOpen(false)}
-              className="block rounded-full border border-white/30 px-5 py-3 text-center text-sm font-medium text-white hover:bg-white hover:text-black"
+              className="block rounded-full border border-[#D4A017]/60 bg-[#D4A017]/10 px-5 py-3 text-center text-sm font-semibold text-[#D4A017] hover:bg-[#D4A017] hover:text-black"
             >
               Apoie-nos
             </Link>
