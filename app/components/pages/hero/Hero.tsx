@@ -36,10 +36,10 @@ export default function Hero() {
         </p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
           <Link
-            href="#equipe"
-            className="rounded-full bg-white px-7 py-3 text-center text-sm font-medium text-black transition hover:bg-white/90"
+            href="#sobre"
+            className="rounded-full bg-[#D4A017] px-7 py-3 text-center text-sm font-semibold text-black transition hover:bg-[#F5C842]"
           >
-            Conheça a nossa equipe
+            Conheça a equipe
           </Link>
           <Link
             href="#projetos"

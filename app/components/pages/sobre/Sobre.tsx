@@ -38,7 +38,7 @@ export default function Sobre() {
 
       <div className="relative z-10 mx-auto flex w-full max-w-7xl justify-end px-6 lg:px-10">
         <div className="max-w-xl">
-          <span className="text-sm font-semibold uppercase tracking-[0.3em] text-[#D4A017]">
+          <span className="text-sm font-semibold uppercase tracking-[0.3em] text-[#4c1d95]">
             Sobre nós
           </span>
           <h2
