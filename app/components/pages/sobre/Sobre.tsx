@@ -1,4 +1,5 @@
 import Image from "next/image";
+import equipeImg from "@/public/equipe.jpg";
 
 function Stat({ value, label }: { value: string; label: string }) {
   return (
@@ -20,11 +21,11 @@ export default function Sobre() {
   return (
     <section
       id="sobre"
-      className="relative h-screen w-full overflow-hidden bg-white text-black"
+      className="relative flex min-h-screen w-full items-center overflow-hidden bg-white py-24 text-black"
     >
       <div className="absolute inset-y-0 left-0 w-full md:w-1/2 lg:w-3/5">
         <Image
-          src="/equipe.jpg"
+          src={equipeImg}
           alt="Equipe Ares Rovers reunida na UnB"
           fill
           className="object-cover object-[center_70%]"
@@ -35,7 +36,7 @@ export default function Sobre() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_5%_10%,rgba(212,160,23,0.18),transparent_50%)]" />
       </div>
 
-      <div className="relative z-10 mx-auto flex h-full max-w-7xl items-center justify-end px-6 lg:px-10">
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl justify-end px-6 lg:px-10">
         <div className="max-w-xl">
           <span className="text-sm font-semibold uppercase tracking-[0.3em] text-[#D4A017]">
             Sobre nós

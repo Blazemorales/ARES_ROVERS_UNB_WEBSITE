@@ -28,7 +28,7 @@ export default function Patrocinadores() {
           {slots.map((s, i) => (
             <div
               key={i}
-              className="flex aspect-[3/2] items-center justify-center rounded-xl border border-black/10 bg-black/[0.02] text-sm font-medium uppercase tracking-[0.25em] text-black/40"
+              className="flex aspect-[3/2] items-center justify-center rounded-xl border border-black/10 bg-black/[0.02] text-sm font-medium uppercase tracking-[0.25em] text-black/55"
             >
               {s}
             </div>

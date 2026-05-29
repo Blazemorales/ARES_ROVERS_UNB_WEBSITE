@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import logoImg from "@/public/Logo_dourada_roxa_dark.png";
 
 export default function Contato() {
   return (
@@ -12,7 +13,7 @@ export default function Contato() {
 
       <div className="relative z-10 mx-auto w-full max-w-4xl px-6 text-center lg:px-10">
         <Image
-          src="/Logo_dourada_roxa_dark.png"
+          src={logoImg}
           alt="Logo Ares Rovers"
           width={120}
           height={120}
@@ -50,7 +51,7 @@ export default function Contato() {
           </Link>
         </div>
 
-        <p className="mt-16 text-xs uppercase tracking-[0.3em] text-white/40">
+        <p className="mt-16 text-xs uppercase tracking-[0.3em] text-white/60">
           © {new Date().getFullYear()} Ares Rovers · Universidade de Brasília
         </p>
       </div>

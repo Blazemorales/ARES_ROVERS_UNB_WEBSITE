@@ -1,15 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
+// TODO: trocar pelo arquivo IMG_2637.jpg (ainda não adicionado em public/).
+// Placeholder temporário usando a foto da equipe.
+import equipeCampoImg from "@/public/equipe.jpg";
 
 export default function Equipe() {
   return (
     <section
       id="equipe"
-      className="relative h-screen w-full overflow-hidden bg-[#4c1d95] text-white"
+      className="relative flex min-h-screen w-full items-center overflow-hidden bg-[#4c1d95] py-24 text-white"
     >
       <div className="absolute inset-y-0 right-0 w-full md:w-1/2 lg:w-3/5">
         <Image
-          src="/IMG_2637.jpg"
+          src={equipeCampoImg}
           alt="Equipe Ares em campo"
           fill
           className="object-cover object-[center_40%]"
@@ -19,7 +22,7 @@ export default function Equipe() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_85%,rgba(212,160,23,0.18),transparent_55%)]" />
       </div>
 
-      <div className="relative z-10 mx-auto flex h-full max-w-7xl items-center px-6 lg:px-10">
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl px-6 lg:px-10">
         <div className="max-w-xl">
           <span className="text-sm font-semibold uppercase tracking-[0.3em] text-[#D4A017]">
             Equipe

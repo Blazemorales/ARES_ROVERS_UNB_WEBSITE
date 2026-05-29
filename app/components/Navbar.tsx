@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import logoImg from "@/public/Logo_dourada_roxa_dark.png";
 
 const navLinks = [
   { href: "#hero", label: "Início" },
@@ -68,7 +69,7 @@ export default function Navbar() {
           onClick={() => setMenuOpen(false)}
         >
           <Image
-            src="/Logo_dourada_roxa_dark.png"
+            src={logoImg}
             alt="Ares Rovers"
             width={40}
             height={40}
