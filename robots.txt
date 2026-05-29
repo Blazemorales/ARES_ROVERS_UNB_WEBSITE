@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+
+Sitemap: https://blazemorales.github.io/ARES_ROVERS_UNB_WEBSITE/sitemap.xml
